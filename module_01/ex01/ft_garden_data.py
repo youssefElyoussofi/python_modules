@@ -1,11 +1,12 @@
 class Plant:
-    def __init__(self, name,height,age):
-        self.name = name
-        self.height = height
-        self.age = age
+    def __init__(ad, name,height,age):
+        
+        ad.name = name
+        ad.height = height
+        ad.age = age
 
-    def __str__(self):
-        return f"{self.name}: {self.height }cm, {self.age }days old"
+    def __str__(ad):
+        return f"{ad.name}: {ad.height }cm, {ad.age }days old"
     
 
 if (__name__ == "__main__"):
@@ -15,6 +16,7 @@ if (__name__ == "__main__"):
     print(p1)
     print(p2)
     print(p3)
+    
     
     
         
