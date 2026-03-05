@@ -8,6 +8,7 @@ class GardenManager:
         self.plans.append(plant)
         print(f"Added {plant.name} to {self.name}'s garden")
 
+
 class Plant:
     def __init__(self,name,height,age):
         self.name = name
