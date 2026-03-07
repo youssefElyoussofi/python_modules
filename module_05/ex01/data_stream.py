@@ -18,10 +18,23 @@ class SensorStream(DataStream):
         self.stream_id = stream_id
 
     def process_batch(self, data_batch: List[Any]) -> str:
+        # 1. THE TYPE CHECK (Using the newly authorized isinstance)
+        # This elegantly stops bad data types before they even enter the logic.
+        if not isinstance(data_batch, list):
+            return "Error: Expected a list of data."
+            
+        # 2. THE STREAM PROTECTION (Using try/except)
+        # Even if it IS a list, the actual processing inside might still crash!
+        # The try/except acts as the shield to prevent the whole program from dying.
         try:
-            return f"Sensor {self.stream_id} processed {len(data_batch)} readings."
-        except Exception:
-            return "Error processing batch"
+            # Imagine complex sensor math happens here that might divide by zero
+            # or fail to parse a specific string inside the list.
+            readings_count = len(data_batch)
+            return f"Sensor {self.stream_id} processed {readings_count} readings."
+            
+        except Exception as e:
+            # If the math fails, the stream survives and just returns an error string.
+            return f"Error processing batch: {e}"
 
 class StreamProcessor:
     # Notice how the type hint is the base class!
